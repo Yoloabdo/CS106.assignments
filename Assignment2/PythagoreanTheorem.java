@@ -1,8 +1,7 @@
 /*
  * File: PythagoreanTheorem.java
- * Name: 
- * Section Leader: 
- * -----------------------------
+ * Name: Abdulrhman Eaita
+ *
  * This file is the starter file for the PythagoreanTheorem problem.
  */
 
