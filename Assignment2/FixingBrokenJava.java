@@ -71,8 +71,8 @@ public class FixingBrokenJava extends ConsoleProgram {
 		/* If the value was nonpositive, reprompt the user. */
 		if (value <= 0) {
 			println("Please enter a positive integer.");
-			
-		}
+			readPositiveInt();
+			}
 		
 		return value;
 	}
