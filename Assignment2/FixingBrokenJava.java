@@ -2,7 +2,7 @@ import acm.program.*;
 
 /* 
  * File: FixingBrokenJava.java
- * Name: Abdulrhman Eaita
+ * Name:
  * Section Leader:
  * 
  * This program does not work as intended.  It contains both
@@ -44,26 +44,18 @@ public class FixingBrokenJava extends ConsoleProgram {
 	 * @return 
 	 * @return Whether or not it is prime.
 	 */
-	private boolean isPrime(int value) {
+	private boolean isPrime(int number) {
 		/* Try all possible divisors of the number.  If any of them
 		 * cleanly divide the number, we return that the number is
 		 * composite.
 		 */
-		if (value == 1 | value == 2){
-			return true;
-		}
-		else{
-			for (int divisor = 2; divisor <= value; divisor++) {
-				if (value % divisor == 0) {
-					return false;
-				}
-				else {
-					return true;
-				}
-			}
-		}
-		
-		return false;
+		for(int i=2; i<number; i++){
+			if(number % i == 0){
+	               return false; //number is divisible so its not prime
+	           }
+	        }
+	        return true; //number is prime now
+
 		
 	}
 	
