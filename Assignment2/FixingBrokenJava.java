@@ -1,6 +1,8 @@
+import acm.program.*;
+
 /* 
  * File: FixingBrokenJava.java
- * Name:
+ * Name: Abdulrhman Eaita
  * Section Leader:
  * 
  * This program does not work as intended.  It contains both
@@ -21,15 +23,16 @@ public class FixingBrokenJava extends ConsoleProgram {
 	/* Reads a number from the user and reports whether or not it
 	 * is prime.
 	 */
+	
 	public void run() {
 		/* Get the value from the user. */
 		int value = readPositiveInt();
 		
 		/* Check whether or not it is prime. */
 		if (isPrime(value)) {
-			println(value + " is prime.")
+			println(value + " is prime.");
 		} else {
-			println(value + " is composite.");
+			println(value + " is not prime.");
 		}
 	}
 	
@@ -38,6 +41,7 @@ public class FixingBrokenJava extends ConsoleProgram {
 	 * prime.
 	 * 
 	 * @param value The value to test.
+	 * @return 
 	 * @return Whether or not it is prime.
 	 */
 	private boolean isPrime(int value) {
@@ -45,11 +49,22 @@ public class FixingBrokenJava extends ConsoleProgram {
 		 * cleanly divide the number, we return that the number is
 		 * composite.
 		 */
-		for (int divisor = 0; divisor <= value; divisor++) {
-			if (value % divisor == 0) {
-				return false;
+		if (value == 1 | value == 2){
+			return true;
+		}
+		else{
+			for (int divisor = 2; divisor <= value; divisor++) {
+				if (value % divisor == 0) {
+					return false;
+				}
+				else {
+					return true;
+				}
 			}
 		}
+		
+		return false;
+		
 	}
 	
 	/**
@@ -62,11 +77,13 @@ public class FixingBrokenJava extends ConsoleProgram {
 		int value = readInt("Enter a positive integer: ");
 		
 		/* If the value was nonpositive, reprompt the user. */
-		while (value <= 0) {
+		if (value <= 0) {
 			println("Please enter a positive integer.");
-			int value = readInt("Enter a positive integer: ");
+			
 		}
 		
 		return value;
 	}
 }
+
+	
