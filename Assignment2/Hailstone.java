@@ -10,22 +10,23 @@ import acm.program.*;
 
 public class Hailstone extends ConsoleProgram {
 	public void run() {
-		
+		/*
+		 * 
+		 * the algorithm for it via wikipedia
+		 * 
+		 * 
+		 */
 		int hailstone = readInt("Enter a number: ");
-		//Counter
 		int x = 0;
-		
 		while (hailstone >= 0){
 			
 			if (hailstone % 2 == 0){
-				//even number
 				println(hailstone + " is even so i take half: " +
 						hailstone / 2);
 				hailstone = hailstone / 2;
 				x++;
 			}
 			else{
-				//Odd number
 				if (hailstone == 1){
 					break;
 				}
