@@ -12,13 +12,6 @@ import acm.util.*;
 import java.awt.*;
 
 public class Hangman extends ConsoleProgram {
-	private HangmanCanvas canvas;
-	private HangmanLexicon HL = new HangmanLexicon();
-	RandomGenerator rgen = new RandomGenerator();
-	private String S_word = HL.getWord(rgen.nextInt(0, HL.getWordCount()-1));
-	private int trials = 8;
-	private String word = replaceDashes(S_word);
-	private String wrong = "";
 
 	public void init(){
     	canvas = new HangmanCanvas();
@@ -88,9 +81,9 @@ public class Hangman extends ConsoleProgram {
     	return false;
     }
     /**
-     * 
+     * Replacing all letters with dashes
      * @param h
-     * @return
+     * @return dashed letters
      */
    
     private String replaceDashWithChar(char h){
@@ -110,5 +103,13 @@ public class Hangman extends ConsoleProgram {
     	}
     	return result;
     }
+    /* Variables and instances  */
+	private HangmanCanvas canvas;
+	private HangmanLexicon HL = new HangmanLexicon();
+	RandomGenerator rgen = new RandomGenerator();
+	private String S_word = HL.getWord(rgen.nextInt(0, HL.getWordCount()-1));
+	private int trials = 8;
+	private String word = replaceDashes(S_word);
+	private String wrong = "";
 
 }

@@ -10,15 +10,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import acm.util.ErrorException;
+
 public class HangmanLexicon {
 
 	ArrayList <String> strlist = new ArrayList<String>();
-/** Returns the number of words in the lexicon. */
-	public int getWordCount() {
-		read();
-		return strlist.size();
-	}
-	
+
+/** Reading the text file into Array list */
 	private void read(){
 		try {
 			/* Open the file for reading. */
@@ -36,8 +34,14 @@ public class HangmanLexicon {
 			/* Close the file. */
 			hangmanWords.close();
 		} catch (IOException e) {
-			
+			throw new ErrorException(e);
 		}
+	}
+	
+/** Returns the number of words in the lexicon. */
+	public int getWordCount() {
+		read();
+		return strlist.size();
 	}
 
 /** Returns the word at the specified index. */
