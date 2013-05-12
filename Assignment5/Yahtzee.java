@@ -76,7 +76,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	 */
 	private void playGame() {
 		intScore();
-		for(int trials = 1; trials< 13*nPlayers; trials++){
+		for(int trials = 1; trials<= 3*nPlayers; trials++){
 			for(int i = 0; i < nPlayers; i++ ){
 				display.printMessage(playerNames[i]+"'s turn! Click \"Roll Dice\" button to roll the dice.");
 				firstRoll(i);
@@ -115,6 +115,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				}
 			}
 		}
+		 calculateWinner();
 	}
 	
 	/**
@@ -197,11 +198,11 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private boolean yahtzee(){
 		int sum = 0;
 		for(int i = 0; i < rolledDices.length; i++){
-			if(rolledDices[i] == rolledDices[i+1]){
+			if(rolledDices[0] == rolledDices[i]){
 				sum +=1;
 			}
 		}
-		if (sum == 4) return true;
+		if (sum == 5) return true;
 		else return false;
 	}
 	
@@ -218,11 +219,13 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private boolean smallStright(){
 		int[] x = rolledDices;
 		Arrays.sort(x);
-		for(int i = 0; i < x.length; i++){
-			if(x[i] == x[i+1] -1 && x[i+1] == x[i+2]-1 && x[i+2] == x[i+3]-1 ){
-				return true;
-			}
+		if(x[0] == x[1] -1 && x[1] == x[2]-1 && x[2] == x[3]-1 ){
+			return true;
 		}
+		if(x[1] == x[2] -1 && x[2] == x[3]-1 && x[3] == x[4]-1 ){
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -241,7 +244,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private boolean fourOfKind(){
 		int[] x = rolledDices;
 		Arrays.sort(x);
-		for(int i = 0; i < x.length; i++){
+		for(int i = 0; i < 2; i++){
 			if(x[i] == x[i+1] && x[i+1] == x[i+2] && x[i+2] == x[i+3]){
 				score = 4* x[i];
 				return true;
@@ -249,6 +252,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		 return false;
 	 }
+	
 	
 	private boolean fullhouse(){
 		int[] x = rolledDices;
@@ -321,7 +325,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			sumScore += scores[player][j];
 			}
 		}
-		
+		scores[player][15] = sumScore;
 		return sumScore;
 		
 	}
@@ -349,10 +353,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				sumScore += scores[player][j];
 				}
 			}
-			if(scores[player][UPPER_SCORE] != -1) display.updateScorecard(UPPER_SCORE, player, sumScore);
+			if(scores[player][UPPER_SCORE] == -1) display.updateScorecard(UPPER_SCORE, player, sumScore);
 			if(sumScore >=63) scores[player][UPPER_BONUS] = 35;
-			
 		}
+		
 	}
 	private boolean lowerScoreChecker(int player){
 		for(int j =8; j < 15; j++){
@@ -369,11 +373,28 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				sumScore += scores[player][j];
 				
 			}
-			if(scores[player][LOWER_SCORE] != -1) display.updateScorecard(LOWER_SCORE, player, sumScore);
+			if(scores[player][LOWER_SCORE] == -1) display.updateScorecard(LOWER_SCORE, player, sumScore);
 			
 			
 		}
 	}
+
+	/* when game end, and all the final scores have been added up. 
+	 * Calculates which player has the highest score and what the highest score is 
+	 * and prints that information in a message at the very end of the game.*/
+	private void calculateWinner() {
+		int winningScore = 0;
+		int winningPlayerNumber = 0;
+		for(int i = 0; i < nPlayers; i++) {
+			int x = scores[i][TOTAL-1];
+			if( x > winningScore) {
+				winningScore = x;
+				winningPlayerNumber = i;
+			}
+		}
+		display.printMessage("Congratulations, " + playerNames[winningPlayerNumber] + ", you're the winner with a total score of " + winningScore + "!");
+	}
+
 		
 	/* Private instance variables */
 	private static int nPlayers;
