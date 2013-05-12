@@ -1,8 +1,8 @@
 CS106.assignments
 =================
 
-here's Stanford course for programming, trying to solve the assignments in the course along the way
+this's cs106a course, provided by Stanford on their youtube channel + itunes.
+i tried to do my best to solve it's assignments, as you can see above in the code.
 
-it's a hard course, but yet is beautiful, and so full of taugh stuff too.
-
-but nothing is easy? ya i know, so here we go :)
+hope you can find it easy to read, helpful if you're willing to take this course by yourself like me, or just another way to think about the problems that you're facing in this course.
+anyway, Enjoy. 
