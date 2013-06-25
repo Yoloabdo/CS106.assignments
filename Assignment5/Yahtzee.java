@@ -75,6 +75,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	 * implementation.
 	 */
 	private void playGame() {
+		scores	= new int[nPlayers][16];
 		intScore();
 		for(int trials = 1; trials<= 3*nPlayers; trials++){
 			for(int i = 0; i < nPlayers; i++ ){
@@ -398,7 +399,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		
 	/* Private instance variables */
 	private static int nPlayers;
-	private int[][] scores	= new int[4][16];
+	private int[][] scores;
 	private int category;
 	int score ;
 	private int[] rolledDices = new int[N_DICE];
